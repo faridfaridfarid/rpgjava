@@ -1,0 +1,246 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Convertir les distances en Javascript</title>
+<meta name="description" content="Afficher la valeur convertie instantanément selon la distance tapée et l'unité de mesure choisie" />
+<meta name="robots" content="index,follow" />
+<meta http-equiv="content-language" content="fr" />
+<link href='styles/mef.css' rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="js/tabs-conversions.js"></script>
+
+</head>
+<body>
+
+	<div class="div_conteneur_parent">
+	
+		<div class="div_conteneur_page">
+			<a href="http://www.bonbache.fr/" target="_self">
+			<img src="images/le_formateur.png" style="width:50px;border:none;" align="left" alt="formateur informatique" />
+			</a>		
+			<div class="titre_page"><h1>Unités de mesure : Les conversions</h1></div>
+			
+			<div class="div_int_page">
+			
+			<div style="width:100%;display:block;text-align:center;">
+			</div>
+			
+			<div class="div_saut_ligne" style="height:30px;">
+			</div>						
+			
+			<div style="float:left;width:10%;height:40px;"></div>
+			<div style="float:left;width:80%;height:40px;text-align:center;">
+			<div style="width:auto;display:block;height:auto;text-align:center;background-color:#e2efda;border:#7030a0 1px solid;padding-top:12px;box-shadow: 6px 6px 0px #aaa;color:#7030a0;">
+			<h1>Convertisseur de distances pour le Web</h1>
+			</div>
+			</div>
+			<div style="float:left;width:10%;height:40px;"></div>
+			
+			<div class="div_saut_ligne">
+			</div>
+			
+			<div style="width:100%;height:auto;text-align:center;">
+			
+			<div style="width:800px;display:inline-block;" id="conteneur">
+				<div class="colonne" id="colonne_gauche">
+					<div class="titre_colonne" id="titre_gauche">Unité de départ :</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='km';" id="km1">Kilomètre : Km</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='m';" id="m1">Mètre : m</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='dm';" id="dm1">Décimètre : dm</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='cm';" id="cm1">Centimètre : cm</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='mm';" id="mm1">Millimètre : mm</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='mi';" id="mi1">Mille : Mi</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='in';" id="in1">Inch : In</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='ft';" id="ft1">Foot : Ft</div>
+					<div class="unite" onclick="reinitialiser('colonne_gauche'); this.className='unite unite-activer'; unite_depart='yd';" id="yd1">Yard : Yd</div>
+				</div>
+				
+				<div class="centre">
+					<div class="titre_centre">à convertir en :</div>
+					<div class="contenu_centre">
+					<!--onclick => si on click dans le cadre, on efface la valeur à l'interieur
+						onMouseOut => si on click à l'interieur et qu'on reclick à l'exterieur le texte
+						reapparait-->
+					<input type="text" id="distance" value="Saisissez la valeur" 
+					onclick="Javascript:if(this.value=='Saisissez la valeur'){this.value='';}"
+					onMouseOut="Javascript:if(this.value==''){this.value='Saisissez la valeur';}" />
+					</div>
+					<div class="contenu_centre">
+					<input type="button" value="Convertir =>" onclick="convertir()" />					
+					</div>
+					<div class="contenu_centre contenu_resultat" id="resultat">
+					Résultat de la conversion :<br /><br />
+					</div>		
+				</div>
+				
+				<div class="colonne" id="colonne_droite">
+					<div class="titre_colonne" id="titre_droite">Unité d'arrivée :</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='km';" id="km2">Kilomètre : Km</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='m';" id="m2">Mètre : m</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='dm';" id="dm2">Décimètre : dm</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='cm';" id="cm2">Centimètre : cm</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='mm';" id="mm2">Millimètre : mm</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='mi';" id="mi2">Mille : Mi</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='in';" id="in2">Inch : In</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='ft';" id="ft2">Foot : Ft</div>
+					<div class="unite" onclick="reinitialiser('colonne_droite'); this.className='unite unite-activer'; unite_fin='yd';" id="yd2">Yard : Yd</div>				
+				</div>
+			</div>
+			
+			</div>
+
+			<div class="div_saut_ligne" style="height:50px;">
+			</div>	
+			
+			</div>
+		</div>
+	
+	</div>
+	
+</body>
+<script type="text/javascript" language="javascript">
+	var unite_depart="";
+	var unite_fin="";
+
+	function convertir(){
+		var position = "";
+		var tab_unites = "";
+		var facteur_conversion = "";
+		var distance = "";
+		var tab_texte_unite = "";
+		var texte_unite_depart = "";
+		var texte_unite_fin = "";
+		var nombre = 0;
+
+		//alert(unite_depart + "-" + unite_fin);
+		if(unite_depart == "" || unite_fin == ""){
+			alert("Vous devez definir les unités de départ et de fin");
+			return;
+		}
+
+		dist =document.getElementById('distance').value;
+		//si ce n'est pas une valeur numerique 
+		if(isNaN(parseInt(dist))){
+			alert("Vous devez saisir une valeur numerique pour la conversion");
+			return;
+		}
+
+		switch(unite_fin){
+			case "km":
+			position = 0;
+			break;
+			case "m":
+			position = 1;
+			break;
+			case "dm":
+			position = 2;
+			break;
+			case "cm":
+			position = 3;
+			break;
+			case "mm":
+			position = 4;
+			break;
+			case "mi":
+			position = 5;
+			break;
+			case "in":
+			position = 6;
+			break;
+			case "ft":
+			position = 7;
+			break;
+			case "yd":
+			position = 8;
+			break;
+		}
+		//alert(position);
+		tab_texte_unite = unite.split('-');
+		 texte_unite_fin = tab_texte_unite[position];
+		// alert(texte_unite_fin);
+		
+		switch(unite_depart){
+			case "km":
+			tab_unites = km.split('-');
+			texte_unite_depart = tab_texte_unite[0];
+			break;
+			case "m":
+			tab_unites = m.split('-');
+			texte_unite_depart = tab_texte_unite[1];
+			break;
+			case "dm":
+			tab_unites = dm.split('-');
+			texte_unite_depart = tab_texte_unite[2];
+			break;
+			case "cm":
+			tab_unites = cm.split('-');
+			texte_unite_depart = tab_texte_unite[3];
+			break;
+			case "mm":
+			tab_unites = mm.split('-');
+			texte_unite_depart = tab_texte_unite[4];
+			break;
+			case "mi":
+			tab_unites = mi.split('-');
+			texte_unite_depart = tab_texte_unite[5];
+			break;
+			case "in":
+			tab_unites = inch.split('-');
+			texte_unite_depart = tab_texte_unite[6];
+			break;
+			case "ft":
+			tab_unites = ft.split('-');
+			texte_unite_depart = tab_texte_unite[7];
+			break;
+			case "yd":
+			tab_unites = yd.split('-');
+			texte_unite_depart = tab_texte_unite[8];
+			break;
+		}
+
+		if(dist >= 2){
+			if(texte_unite_depart != "Feet"){
+				texte_unite_depart += "s";
+			}else{
+				if(texte_unite_depart == "Feet"){
+					texte_unite_depart = "Foot";
+				}
+			}
+		}
+		//alert(texte_unite_depart);
+		facteur_conversion = tab_unites[position];
+		//alert(facteur_conversion);
+		 nombre = dist * facteur_conversion;
+		//alert(nombre);
+
+		if(nombre >= 2){
+			if(texte_unite_fin != "Feet"){
+				texte_unite_fin += "s";
+			}
+			else{
+				if(texte_unite_fin == "Feet"){
+					texte_unite_fin= "Foot";
+				}
+		
+			}
+		}
+
+		nombre = new Intl.NumberFormat().format(nombre);
+
+document.getElementById('resultat').innerHTML = "<strong>" + dist + " "
+	 + texte_unite_depart + "</strong> <br /><br />=<br /><br /><strong>" + nombre + " " +
+		texte_unite_fin + "</strong>";
+	}
+
+	function reinitialiser(calque_parent){
+		var parent = document.getElementById(calque_parent);
+		var enfants = parent.getElementsByTagName('div');
+
+		for(var i = 0; i < enfants.length;i++){
+			if(enfants[i].id !='titre_gauche'&& enfants[i].id != 'titre_droit' ){
+				enfants[i].className = 'unite';
+			}
+		}
+	}
+</script>
+</html>
+	
