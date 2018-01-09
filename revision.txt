@@ -1,0 +1,28 @@
+JPA ==> En Java, lorsqu’on parle d’une « solution de persistance des données », 
+on évoque couramment un système permettant la sauvegarde des données contenues dans 
+des objets. En réalité, vous connaissez donc déjà tous
+ un moyen de persistance : le stockage dans une base de données relationnelle via JDBC !
+
+classe Abs===>Une classe abstraite est quasiment identique à une classe normale. Oui, 
+identique aux classes que vous avez maintenant l'habitude de coder. Cela dit, elle a 
+tout de même une particularité : vous ne pouvez pas l'instancier !
+Une telle classe peut contenir la même chose qu'une classe normale. Ses enfants pourront 
+utiliser tous ses éléments déclarés (attributs et méthodes déclarés public ou protected, 
+nous sommes d'accord). Cependant, ce type de classe permet de définir des méthodes abstraites 
+qui présentent une particularité : elle n'ont pas de corps ! 
+Une méthode abstraite est signalée par le modificateur abstract placé au début de son en-tête. Une telle méthode n'a alors que son prototype, 
+c'est-à-dire son type de retour suivi, de son nom, suivi de la liste de ses paramètres entre des parenthèses, suivi d'un point-virgule.
+ Une méthode abstraite ne peut pas être déclarée static ou private ou final. 
+Dès qu'une classe contient une méthode abstraite, elle doit elle aussi être déclarée abstraite, avec le modificateur abstract placé au début de son en-tête . 
+Une classe abstraite ne peut pas être instanciée. Il faudra l'étendre et définir toutes les méthodes abstraites qu'elle contient pour pouvoir l'utiliser. 
+Une sous-classe d'une classe abstraite sera encore abstraite si elle ne définit pas toutes les méthodes abstraites dont elle hérite.
+
+Les classes abstraites sont très utiles pour définir des méthodes dépendant d'autres méthodes qui ne sont pas précisées.
+
+interface ==>Une interface définit un comportement (d’une classe) qui doit être implémenté par une classe, sans implémenter ce comportement. C’est un ensemble de méthodes abstraites, et de constantes. Certaines interfaces ( Cloneable, Serializable, …) sont dites interfaces de «balisage» : elle n’imposent pas la définition d’une méthode, mais indiquent que les objets qui les implémentent ont certaines propriétés.
+
+Les différences entre les interfaces et les classes abstraites : 
+
+Une interface n’implémente aucune méthode.
+Une classe, ou une classe abstraite peut implémenter plusieurs interfaces, mais n’a qu’une super classe, alors qu’une interface peut dériver de plusieurs autres interfaces.
+Des classes non liées hiérarchiquement peuvent implémenter la même interface
