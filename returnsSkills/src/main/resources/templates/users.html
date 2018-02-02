@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Liste des users</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>BuyPrice</th>
+			<th>Volume</th>
+			<th>BtcDollars</th>
+			<th>SellPrice</th>
+			<th>TotalBuy</th>
+			<th>TotalSell</th>
+			<th>DateBuy</th>
+			<th>DateSell</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="u:${users}">
+			<td th:text="${u.id}"></td>
+			<td th:text="${u.buyPrice}"></td>
+			<td th:text="${u.volume}"></td>
+			<td th:text="${u.btcDollars}"></td>
+			<td th:text="${u.sellPrice}"></td>
+			<td th:text="${u.totalBuy}"></td>
+			<td th:text="${u.totalSell}"></td>
+			<td th:text="${u.dateBuy}"></td>
+			<td th:text="${u.dateSell}"></td>
+		</tr>	
+	</tbody>
+</table>
+
+</body>
+</html>
