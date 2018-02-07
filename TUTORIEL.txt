@@ -1,0 +1,44 @@
+A container is a runtime environment for images
+An image is a software that you run within the containers.
+The image is built using layers. Suppose you have an existing image, 
+you added your app and built a new image and other people can build an image on top of your image.
+
+
+1 ===> AJOUTER CETTE DEPENDANCES DANS LE POM.XML
+
+<plugin>
+      <groupId>com.spotify</groupId>
+      <artifactId>docker-maven-plugin</artifactId>
+      <configuration>
+        <imageName>returnskill</imageName>
+        <baseImage>java:8</baseImage>
+        <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+        <!-- copy the service's jar file from target into the root directory of the image --> 
+        <resources>
+           <resource>
+             <targetPath>/</targetPath>
+             <directory>${project.build.directory}</directory>
+             <include>${project.build.finalName}.jar</include>
+           </resource>
+        </resources>
+      </configuration>
+    </plugin>
+
+
+2=======>OUVRIR UNE CONSOLE MODE ADMIN (CMD, POWERSHELL, CMDER(mon pti chouchou!))
+2.1====> SE POSITIONNER DANS LE DOSSIER DE l'APP, ex : cd C:\Users\Farid.Bouchikhi\Desktop\returnskill\Returnskill
+2.2====> click droit sur l'icone docker dans la barre de tache, settings, general, cochez "exposed daemon on tcp..." puis network, cochez fixed dans server DNS
+2.2====> taper la commande mvn clean package docker:build (ou tout faire d'un coup ==> cd C:\Users\Farid.Bouchikhi\Desktop\returnskill\Returnskill && ./mvnw clean package docker:build
+2.3====>Si vous avez une exception comme ci dessous il suffit d'ajouter Java dans une variable d'environnement system
+java.lang.UnsupportedClassVersionError: org/apache/maven/wrapper/MavenWrapperMain : Unsupported major.minor version 51.0
+
+3===> si tout fonctionne bien, vous verrez que docker download l'image de Java 8 et vous verrez BUILD SUCCESS en vert
+4===> taper la commande docker images   ==> elle vous permets de verifier la liste des images dont vous disposez, vous y verrez :
+Java
+returnskill
+hello-world (si vous avez telecharger cette image lors de votre install de docker dans le petit tuto proposé part docker)
+
+5===>taper la commande docker run -it -p 80:8081 returnskill
+5.1===> ouvrez votre navigateur, taper votre adresse ip dans la barre d'adresse et Bamn, l'application tourne
+
+
